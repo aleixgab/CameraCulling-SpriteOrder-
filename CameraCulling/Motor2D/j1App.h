@@ -16,7 +16,6 @@ class j1Audio;
 class j1Scene;
 class j1Map;
 class j1PathFinding;
-class j1EntityFactory;
 
 class j1App
 {
@@ -89,7 +88,6 @@ public:
 	j1Scene*			scene = NULL;
 	j1Map*				map = NULL;
 	j1PathFinding*		pathfinding = NULL;
-	j1EntityFactory*	entities = NULL;
 
 private:
 
