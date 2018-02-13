@@ -3,6 +3,7 @@
 #include "j1App.h"
 #include "j1Window.h"
 #include "j1Render.h"
+#include "Brofiler\Brofiler.h"
 
 #define VSYNC true
 
@@ -47,10 +48,10 @@ bool j1Render::Awake(pugi::xml_node& config)
 		camera.x = 0;
 		camera.y = 0;
 
-		cameraCulling.w = App->win->screen_surface->w - 100;
-		cameraCulling.h = App->win->screen_surface->h - 100;
-		cameraCulling.x = 50;
-		cameraCulling.y = 50;
+		cameraCulling.w = App->win->screen_surface->w - 30;
+		cameraCulling.h = App->win->screen_surface->h - 30;
+		cameraCulling.x = 15;
+		cameraCulling.y = 15;
 
 		
 	}
@@ -76,6 +77,7 @@ bool j1Render::PreUpdate()
 
 bool j1Render::PostUpdate()
 {
+	BROFILER_CATEGORY("Render", Profiler::Color::Orchid);
 	SDL_SetRenderDrawColor(renderer, background.r, background.g, background.g, background.a);
 	SDL_RenderPresent(renderer);
 	return true;
