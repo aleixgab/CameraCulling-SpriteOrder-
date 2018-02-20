@@ -7,8 +7,8 @@
 #include "j1Render.h"
 #include "j1Window.h"
 #include "j1Map.h"
-#include "j1PathFinding.h"
 #include "j1Scene.h"
+#include "j1EntityFactory.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -36,12 +36,13 @@ bool j1Scene::Start()
 		int w, h;
 		uchar* data = NULL;
 		if(App->map->CreateWalkabilityMap(w, h, &data))
-			App->pathfinding->SetMap(w, h, data);
 
 		RELEASE_ARRAY(data);
 	}
 
 	debug_tex = App->tex->Load("maps/path2.png");
+
+	App->entities->AddEntity(50, 50, BAT);
 
 	return true;
 }
@@ -63,7 +64,6 @@ bool j1Scene::PreUpdate()
 	{
 		if(origin_selected == true)
 		{
-			App->pathfinding->CreatePath(origin, p);
 			origin_selected = false;
 		}
 		else
@@ -126,14 +126,6 @@ bool j1Scene::Update(float dt)
 	p = App->map->MapToWorld(p.x, p.y);
 
 	App->render->Blit(debug_tex, p.x, p.y);
-
-	const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
-
-	for(uint i = 0; i < path->Count(); ++i)
-	{
-		iPoint pos = App->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-		App->render->Blit(debug_tex, pos.x, pos.y);
-	}
 
 	return true;
 }

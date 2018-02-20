@@ -11,7 +11,7 @@
 #include "j1Audio.h"
 #include "j1Scene.h"
 #include "j1Map.h"
-#include "j1Pathfinding.h"
+#include "j1EntityFactory.h"
 #include "j1App.h"
 
 // TODO 3: Add Brofiler categories to all Update methods
@@ -28,7 +28,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new j1Audio();
 	scene = new j1Scene();
 	map = new j1Map();
-	pathfinding = new j1PathFinding();
+	entities = new j1EntityFactory();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -38,7 +38,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(map);
 	AddModule(scene);
-	AddModule(pathfinding);
+	AddModule(entities);
 
 	// render last to swap buffer
 	AddModule(render);
