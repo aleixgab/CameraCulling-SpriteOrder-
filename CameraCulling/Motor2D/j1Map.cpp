@@ -39,8 +39,6 @@ void j1Map::Draw()
 
 		if(layer->properties.Get("Nodraw") != 0)
 			continue;
-		//iPoint pos = WorldToMap(App->render->camera.x, App->render->camera.y);
-		//iPoint dimension = WorldToMap(App->render->camera.x + App->render->camera.w, App->render->camera.y + App->render->camera.h);
 		
 		for(int y = 0; y < data.height; ++y)
 		{
@@ -53,9 +51,7 @@ void j1Map::Draw()
 
 					SDL_Rect r = tileset->GetTileRect(tile_id);
 					iPoint pos = MapToWorld(x, y);
-				//	if (pos.x /*+ data.tile_width*/ >= -App->render->camera.x && pos.x + data.tile_width <= -App->render->camera.x + App->render->camera.w)
-				//		if (pos.y /*+ data.tile_height */> -App->render->camera.y && pos.y + data.tile_height < -App->render->camera.y + App->render->camera.h)
-				//			App->render->Blit(tileset->texture, pos.x, pos.y, &r);
+
 					App->render->Blit(tileset->texture, pos.x, pos.y, &r);
 				}
 			}
