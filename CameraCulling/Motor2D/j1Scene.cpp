@@ -42,7 +42,9 @@ bool j1Scene::Start()
 
 	debug_tex = App->tex->Load("maps/path2.png");
 
-	App->entities->AddEntity(50, 50, BAT);
+	App->entities->AddEntity(80, 80, ARCHER);
+	App->entities->AddEntity(100, 500, GRUNT);
+	App->entities->AddEntity(-100, 500, AXETHROWER);
 
 	return true;
 }

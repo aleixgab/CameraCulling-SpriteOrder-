@@ -15,7 +15,9 @@ class Entity;
 enum ENTITY_TYPES
 {
 	NO_TYPE,
-	BAT,
+	ARCHER,
+	GRUNT,
+	AXETHROWER,
 };
 
 class j1EntityFactory : public j1Module {
@@ -28,7 +30,7 @@ public:
 	virtual ~j1EntityFactory() {};
 
 public:
-	bool Update(float dt);
+	bool PostUpdate();
 	bool CleanUp();
 	bool Start();
 
@@ -44,14 +46,12 @@ public:
 
 	void Draw(SDL_Texture* texture);
 
-	void SetTexture(char* tex, SDL_Rect posText);
-
 public:
 	iPoint pos;
 	ENTITY_TYPES type;
-
-private:
 	SDL_Rect rect;
+private:
+
 };
 
 #endif // !__ENTITIES_H__
