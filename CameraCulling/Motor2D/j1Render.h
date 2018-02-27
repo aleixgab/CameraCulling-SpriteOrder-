@@ -52,6 +52,8 @@ public:
 	SDL_Rect		viewport;
 	SDL_Color		background;
 
+	bool CameraCulling_On = false;
+
 };
 
 #endif // __j1RENDER_H__

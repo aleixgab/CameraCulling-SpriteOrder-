@@ -46,8 +46,10 @@ bool j1Render::Awake(pugi::xml_node& config)
 	{
 		camera.w = App->win->screen_surface->w;
 		camera.h = App->win->screen_surface->h;
-		camera.x = 455;
+		camera.x = 400;
 		camera.y = 0;
+		
+
 
 	}
 
@@ -136,43 +138,47 @@ iPoint j1Render::ScreenToWorld(int x, int y) const
 bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section, float speed, double angle, int pivot_x, int pivot_y) const
 {
 	bool ret = true;
-	if (x >= -App->render->camera.x && x + App->map->data.tile_width < -App->render->camera.x + App->render->camera.w)
-		if (y >= -App->render->camera.y && y + App->map->data.tile_height < -App->render->camera.y + App->render->camera.h) {
+	bool canBlit = false;
+	if (CameraCulling_On)
+		if (x >= -App->render->camera.x && x + App->map->data.tile_width < -App->render->camera.x + App->render->camera.w)
+			if (y >= -App->render->camera.y && y + App->map->data.tile_height < -App->render->camera.y + App->render->camera.h)
+				canBlit = true;
 			
-			uint scale = App->win->GetScale();
-			SDL_Rect rect;
-			rect.x = (int)(camera.x * speed) + x * scale;
-			rect.y = (int)(camera.y * speed) + y * scale;
+	if(!CameraCulling_On || canBlit){
+		uint scale = App->win->GetScale();
+		SDL_Rect rect;
+		rect.x = (int)(camera.x * speed) + x * scale;
+		rect.y = (int)(camera.y * speed) + y * scale;
 
-			if (section != NULL)
-			{
-				rect.w = section->w;
-				rect.h = section->h;
-			}
-			else
-			{
-				SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
-			}
-
-			rect.w *= scale;
-			rect.h *= scale;
-
-			SDL_Point* p = NULL;
-			SDL_Point pivot;
-
-			if (pivot_x != INT_MAX && pivot_y != INT_MAX)
-			{
-				pivot.x = pivot_x;
-				pivot.y = pivot_y;
-				p = &pivot;
-			}
-
-			if (SDL_RenderCopyEx(renderer, texture, section, &rect, angle, p, SDL_FLIP_NONE) != 0)
-			{
-				LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
-				ret = false;
-			}
+		if (section != NULL)
+		{
+			rect.w = section->w;
+			rect.h = section->h;
 		}
+		else
+		{
+			SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
+		}
+
+		rect.w *= scale;
+		rect.h *= scale;
+
+		SDL_Point* p = NULL;
+		SDL_Point pivot;
+
+		if (pivot_x != INT_MAX && pivot_y != INT_MAX)
+		{
+			pivot.x = pivot_x;
+			pivot.y = pivot_y;
+			p = &pivot;
+		}
+
+		if (SDL_RenderCopyEx(renderer, texture, section, &rect, angle, p, SDL_FLIP_NONE) != 0)
+		{
+			LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
+			ret = false;
+		}
+	}
 	return ret;
 }
 

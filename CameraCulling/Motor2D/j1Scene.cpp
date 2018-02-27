@@ -99,6 +99,9 @@ bool j1Scene::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 		App->render->camera.x -= floor(600.0f * dt);
 
+	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) 
+		App->render->CameraCulling_On = !App->render->CameraCulling_On;
+
 
 	App->map->Draw();
 
