@@ -45,6 +45,8 @@ public:
 	// Set background color
 	void SetBackgroundColor(SDL_Color color);
 
+	bool Is_inScreen();
+
 public:
 
 	SDL_Renderer*	renderer;

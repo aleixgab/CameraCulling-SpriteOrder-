@@ -49,8 +49,6 @@ bool j1Render::Awake(pugi::xml_node& config)
 		camera.x = 400;
 		camera.y = 0;
 		
-
-
 	}
 
 	return ret;
@@ -143,7 +141,7 @@ bool j1Render::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section,
 		if (x >= -App->render->camera.x && x + App->map->data.tile_width < -App->render->camera.x + App->render->camera.w)
 			if (y >= -App->render->camera.y && y + App->map->data.tile_height < -App->render->camera.y + App->render->camera.h)
 				canBlit = true;
-			
+		
 	if(!CameraCulling_On || canBlit){
 		uint scale = App->win->GetScale();
 		SDL_Rect rect;
@@ -260,6 +258,12 @@ bool j1Render::DrawCircle(int x, int y, int radius, Uint8 r, Uint8 g, Uint8 b, U
 		LOG("Cannot draw quad to screen. SDL_RenderFillRect error: %s", SDL_GetError());
 		ret = false;
 	}
+
+	return ret;
+}
+
+bool j1Render::Is_inScreen() {
+	bool ret = false;
 
 	return ret;
 }

@@ -17,7 +17,7 @@ enum ENTITY_TYPES
 	NO_TYPE,
 	ARCHER,
 	GRUNT,
-	AXETHROWER,
+	PLAYER,
 };
 
 class j1EntityFactory : public j1Module {
@@ -30,7 +30,8 @@ public:
 	virtual ~j1EntityFactory() {};
 
 public:
-	bool PostUpdate();
+	bool PreUpdate();
+	bool Update(float dt);
 	bool CleanUp();
 	bool Start();
 
@@ -44,7 +45,9 @@ public:
 class Entity {
 public:
 
+	Entity(int x, int y, ENTITY_TYPES type) {}
 	void Draw(SDL_Texture* texture);
+	virtual void Move(float dt) {};
 
 public:
 	iPoint pos;

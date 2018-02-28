@@ -44,7 +44,7 @@ bool j1Scene::Start()
 
 	App->entities->AddEntity(80, 80, ARCHER);
 	App->entities->AddEntity(100, 500, GRUNT);
-	App->entities->AddEntity(-100, 500, AXETHROWER);
+	App->entities->AddEntity(-100, 500, PLAYER);
 
 	return true;
 }
