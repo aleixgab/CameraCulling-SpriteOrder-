@@ -65,8 +65,10 @@ Entity* j1EntityFactory::AddEntity(int pos_x, int pos_y, ENTITY_TYPES type)
 
 	if (ent->type == GRUNT)
 		ent->rect.x = 45;
-	else if (ent->type == ARCHER)
+	else if (ent->type == PLAYER)
 		ent->rect.x = 90;
+	else if (ent->type == AXETHROWER)
+		ent->rect.x = 0;
 	entities.push_back(ent);
 
 	return ent;

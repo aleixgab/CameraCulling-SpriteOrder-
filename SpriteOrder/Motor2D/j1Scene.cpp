@@ -42,9 +42,18 @@ bool j1Scene::Start()
 
 	debug_tex = App->tex->Load("maps/path2.png");
 
-	App->entities->AddEntity(80, 80, ARCHER);
+	App->entities->AddEntity(80, 80, PLAYER);
 	App->entities->AddEntity(100, 500, GRUNT);
-	App->entities->AddEntity(-100, 500, PLAYER);
+	App->entities->AddEntity(100, 600, GRUNT);
+	App->entities->AddEntity(100, 400, GRUNT);	
+	App->entities->AddEntity(100, 300, GRUNT);
+	App->entities->AddEntity(100, 100, GRUNT);
+	App->entities->AddEntity(100, 450, GRUNT);
+	App->entities->AddEntity(100, 550, GRUNT);
+	App->entities->AddEntity(100, 100, GRUNT);	
+	App->entities->AddEntity(100, 680, GRUNT);
+	App->entities->AddEntity(100, 500, GRUNT);
+	App->entities->AddEntity(-100, 650, AXETHROWER);
 
 	return true;
 }

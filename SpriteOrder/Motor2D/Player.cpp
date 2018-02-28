@@ -37,3 +37,8 @@ void Player::Move(float dt) {
 Player::~Player()
 {}
 
+void Player::Draw(SDL_Texture* texture)
+{
+	App->render->Blit(texture, pos.x, pos.y, &rect);
+}
+

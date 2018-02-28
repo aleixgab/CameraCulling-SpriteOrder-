@@ -15,9 +15,9 @@ class Entity;
 enum ENTITY_TYPES
 {
 	NO_TYPE,
-	ARCHER,
-	GRUNT,
 	PLAYER,
+	GRUNT,
+	AXETHROWER,
 };
 
 class j1EntityFactory : public j1Module {
