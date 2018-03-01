@@ -47,13 +47,8 @@ bool j1Scene::Start()
 	App->entities->AddEntity(100, 600, GRUNT);
 	App->entities->AddEntity(100, 400, GRUNT);	
 	App->entities->AddEntity(100, 300, GRUNT);
-	App->entities->AddEntity(100, 100, GRUNT);
-	App->entities->AddEntity(100, 450, GRUNT);
-	App->entities->AddEntity(100, 550, GRUNT);
-	App->entities->AddEntity(100, 100, GRUNT);	
-	App->entities->AddEntity(100, 680, GRUNT);
-	App->entities->AddEntity(100, 500, GRUNT);
-	App->entities->AddEntity(-100, 650, AXETHROWER);
+	App->entities->AddEntity(300, 300, TOWN_HALL);
+	App->entities->AddEntity(-100, 650, AXE_THROWER);
 
 	return true;
 }

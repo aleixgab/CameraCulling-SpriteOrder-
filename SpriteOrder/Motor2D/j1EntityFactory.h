@@ -17,7 +17,8 @@ enum ENTITY_TYPES
 	NO_TYPE,
 	PLAYER,
 	GRUNT,
-	AXETHROWER,
+	AXE_THROWER,
+	TOWN_HALL
 };
 
 class j1EntityFactory : public j1Module {
@@ -46,7 +47,7 @@ class Entity {
 public:
 
 	Entity(int x, int y, ENTITY_TYPES type) {}
-	void Draw(SDL_Texture* texture);
+	virtual void Draw(SDL_Texture* texture);
 	virtual void Move(float dt) {};
 
 public:

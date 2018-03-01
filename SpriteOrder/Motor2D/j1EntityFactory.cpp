@@ -5,7 +5,7 @@
 
 bool j1EntityFactory::Start() {
 
-	texture = App->tex->Load("textures/entities.png");
+	texture = App->tex->Load("textures/entities2.png");
 	return true;
 }
 
@@ -58,17 +58,27 @@ Entity* j1EntityFactory::AddEntity(int pos_x, int pos_y, ENTITY_TYPES type)
 		 ent = new Player(pos_x, pos_y, type);
 	else
 		ent = new Entity(pos_x,pos_y, type);
+
 	ent->type = type;
 	ent->pos = { pos_x, pos_y };
-	ent->rect.w = ent->rect.h = 45;
-	ent->rect.y = 0;
-
-	if (ent->type == GRUNT)
-		ent->rect.x = 45;
-	else if (ent->type == PLAYER)
-		ent->rect.x = 90;
-	else if (ent->type == AXETHROWER)
-		ent->rect.x = 0;
+	
+	if (ent->type == GRUNT) {
+		ent->rect.x = 269;
+		ent->rect.w = ent->rect.h = 45;
+		ent->rect.y = 0;
+	}
+	else if (ent->type == AXE_THROWER) {
+		ent->rect.x = 227;
+		ent->rect.w = ent->rect.h = 45;
+		ent->rect.y = 0;
+	}
+	else if (ent->type == TOWN_HALL) {
+		ent->rect.x = 225;
+		ent->rect.w = 120;
+		ent->rect.h = 115;
+		ent->rect.y = 60;
+	}
+	
 	entities.push_back(ent);
 
 	return ent;
