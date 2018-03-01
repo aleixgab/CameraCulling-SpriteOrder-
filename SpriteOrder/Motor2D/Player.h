@@ -38,7 +38,6 @@ private:
 	Animation* CurrentAnim = nullptr;
 
 	SDL_Texture* texture = nullptr;
-	SDL_Rect rect;
 	fPoint speed = { 0.0f,0.0f };
 };
 
