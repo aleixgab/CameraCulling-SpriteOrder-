@@ -10,14 +10,14 @@ bool j1EntityFactory::Start() {
 }
 
 bool j1EntityFactory::PreUpdate() {
-
+	
 	for (std::list<Entity*>::iterator iterator = entities.begin(); iterator != entities.end(); iterator++) {
 		bool repeat = true;
 		if (*iterator == entities.back())
 			repeat = false;
 		while (repeat) {
 			repeat = false;
-			if ((*iterator)->pos.y + (*iterator)->rect.h > (*std::next(iterator, 1))->pos.y + (*std::next(iterator, 1))->rect.h) {
+			if ((*iterator)->pos.y + (*iterator)->rect.h > (*std::next(iterator))->pos.y + (*std::next(iterator))->rect.h) {
 				SWAP((*iterator), (*iterator++));
 				if (*iterator != entities.back())
 					repeat = true;
