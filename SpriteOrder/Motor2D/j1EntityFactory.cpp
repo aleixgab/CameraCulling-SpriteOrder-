@@ -10,11 +10,15 @@ bool j1EntityFactory::Start() {
 }
 
 bool j1EntityFactory::PreUpdate() {
-	
+
+	//TODO 1: fes una llista que iteri totes les entitats STD
 	for (std::list<Entity*>::iterator iterator = entities.begin(); iterator != entities.end(); iterator++) {
 		bool repeat = true;
 		if (*iterator == entities.back())
 			repeat = false;
+		//TODO 2: intercanvia les posicions del iterador amb el seguent de la llista comprobant la posició dels peus de cada un std::next
+		///Penseu quin ordre volem per despres fer el pintat
+
 		while (repeat) {
 			repeat = false;
 			if ((*iterator)->pos.y + (*iterator)->rect.h > (*std::next(iterator))->pos.y + (*std::next(iterator))->rect.h) {
