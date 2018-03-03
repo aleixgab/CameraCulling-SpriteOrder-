@@ -42,13 +42,13 @@ bool j1Scene::Start()
 
 	debug_tex = App->tex->Load("maps/path2.png");
 
-	App->entities->AddEntity(80, 80, PLAYER);
+	/*App->entities->AddEntity(80, 80, PLAYER);
 	App->entities->AddEntity(100, 500, GRUNT);
 	App->entities->AddEntity(-100, 250, GRUNT);
 	App->entities->AddEntity(-200, 500, GRUNT);	
 	App->entities->AddEntity(450, 250, GRUNT);
 	App->entities->AddEntity(300, 300, TOWN_HALL);
-	App->entities->AddEntity(-100, 650, AXE_THROWER);
+	App->entities->AddEntity(-100, 650, AXE_THROWER);*/
 
 	return true;
 }
@@ -79,6 +79,13 @@ bool j1Scene::PreUpdate()
 		}
 	}
 
+	App->entities->AddEntity(80, 80, PLAYER);
+	App->entities->AddEntity(100, 500, GRUNT);
+	App->entities->AddEntity(-100, 250, GRUNT);
+	App->entities->AddEntity(-200, 500, GRUNT);
+	App->entities->AddEntity(450, 250, GRUNT);
+	App->entities->AddEntity(300, 300, TOWN_HALL);
+	App->entities->AddEntity(-100, 650, AXE_THROWER);
 	return true;
 }
 
@@ -103,6 +110,9 @@ bool j1Scene::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 		App->render->camera.x -= floor(600.0f * dt);
 
+	//TODOO
+	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+		App->render->CameraCulling_On = !App->render->CameraCulling_On;
 
 	App->map->Draw();
 

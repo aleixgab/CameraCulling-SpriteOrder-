@@ -5,6 +5,7 @@
 #include "j1Textures.h"
 #include "j1Map.h"
 #include <math.h>
+#include "j1Scene.h"
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
 {
@@ -52,7 +53,8 @@ void j1Map::Draw()
 					SDL_Rect r = tileset->GetTileRect(tile_id);
 					iPoint pos = MapToWorld(x, y);
 
-					App->render->Blit(tileset->texture, pos.x, pos.y, App->render->Is_inScreen(pos.x, pos.y), &r);
+					if(App->render->Is_inScreen(pos.x,pos.y) || !App->render->CameraCulling_On)
+						App->render->Blit(tileset->texture, pos.x, pos.y, &r);
 				}
 			}
 		}
