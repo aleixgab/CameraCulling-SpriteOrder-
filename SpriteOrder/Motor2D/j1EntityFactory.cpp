@@ -12,34 +12,55 @@ bool j1EntityFactory::Start() {
 bool j1EntityFactory::PreUpdate() {
 
 	//TODO 1: fes una llista que iteri totes les entitats STD
-	for (std::list<Entity*>::iterator iterator = entities.begin(); iterator != entities.end(); iterator++) {
+	//TODO 2: intercanvia les posicions del iterador amb el seguent de la llista comprobant la posició dels peus de cada un std::next
+	///Penseu quin ordre volem per despres fer el pintat
+
+	/*for (Entity* ent = entities.top(); entities.empty(); ent++) {
 		bool repeat = true;
-		if (*iterator == entities.back())
-			repeat = false;
-		//TODO 2: intercanvia les posicions del iterador amb el seguent de la llista comprobant la posició dels peus de cada un std::next
-		///Penseu quin ordre volem per despres fer el pintat
+		if (App->render->Is_inScreen(ent->pos.x, ent->pos.y)) {
+
+			std::priority_queue<int> q;
+		}
 
 		while (repeat) {
 			repeat = false;
-			if ((*iterator)->pos.y + (*iterator)->rect.h > (*std::next(iterator))->pos.y + (*std::next(iterator))->rect.h) {
-				SWAP((*iterator), (*iterator++));
-				if (*iterator != entities.back())
+			if (ent->pos.y + ent->rect.h > std::next(ent)->pos.y + std::next(ent)->rect.h) {
+				SWAP((ent), (ent++));
+				if (!entities.empty())
 					repeat = true;
 			}
 
 		}
+	}*/
+
+
+
+	for (std::list<Entity*>::iterator iterator = entities.begin(); iterator != entities.end(); iterator++) {
+		if (App->render->Is_inScreen((*iterator)->pos.x, (*iterator)->pos.y) || !App->render->CameraCulling_On) {
+			EntitiesDraw_info info;
+			info.pos = (*iterator)->pos;
+			info.rect = (*iterator)->rect;
+			info.priority = (*iterator)->pos.y + (*iterator)->rect.h;
+			drawOrder.push(info);
+		}
 	}
+
 	return true;
 }
 
 
 bool j1EntityFactory::Update(float dt)
 {
+	while (!drawOrder.empty()) {
+		EntitiesDraw_info info = drawOrder.top();
+		App->render->Blit(texture, info.pos.x, info.pos.y, &info.rect);
+		drawOrder.pop();
+	}
+	
 	for (std::list<Entity*>::iterator iterator = entities.begin(); iterator != entities.end(); iterator++) {
-		(*iterator)->Draw(texture);
+		//(*iterator)->Draw(texture);
 		(*iterator)->Move(dt);
 	}
-
 	return true;
 }
 
@@ -51,7 +72,6 @@ bool j1EntityFactory::CleanUp()
 		delete *iterator;
 	}
 	entities.clear();
-
 	return true;
 }
 
@@ -77,7 +97,7 @@ Entity* j1EntityFactory::AddEntity(int pos_x, int pos_y, ENTITY_TYPES type)
 	
 	else if (ent->type == PLAYER) 
 		ent->rect = { 0, 0, 50, 55 };
-
+	
 
 	entities.push_back(ent);
 

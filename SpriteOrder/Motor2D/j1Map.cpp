@@ -52,7 +52,9 @@ void j1Map::Draw()
 					SDL_Rect r = tileset->GetTileRect(tile_id);
 					iPoint pos = MapToWorld(x, y);
 
-					App->render->Blit(tileset->texture, pos.x, pos.y, &r);
+					//TODOO
+					if (App->render->Is_inScreen(pos.x, pos.y) || !App->render->CameraCulling_On)
+						App->render->Blit(tileset->texture, pos.x, pos.y, &r);
 				}
 			}
 		}

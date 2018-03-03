@@ -257,3 +257,15 @@ bool j1Render::DrawCircle(int x, int y, int radius, Uint8 r, Uint8 g, Uint8 b, U
 
 	return ret;
 }
+
+//TODO 1: Create a function that say if tile position that we want to print is in the screen
+bool j1Render::Is_inScreen(int x, int y) {
+	bool ret = false;
+	//TODO 2: make sure that what we want to print is in the screen
+	//think about camera rect and remember than camera position is ... amb les dimencions de la camara (la camara es mou al reves del que pensem)
+	if (x >= -App->render->camera.x && x + App->map->data.tile_width < -App->render->camera.x + App->render->camera.w)
+		if (y >= -App->render->camera.y && y + App->map->data.tile_height < -App->render->camera.y + App->render->camera.h)
+			ret = true;
+
+	return ret;
+}

@@ -45,6 +45,9 @@ public:
 	// Set background color
 	void SetBackgroundColor(SDL_Color color);
 
+	//TODO 1: Create a function that say if tile position that we want to print is in the screen
+	bool Is_inScreen(int x, int y);
+
 public:
 
 	SDL_Renderer*	renderer;

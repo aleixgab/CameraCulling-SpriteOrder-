@@ -5,8 +5,11 @@
 #include "j1Module.h"
 #include "j1Render.h"
 #include "j1Textures.h"
+#include "SDL/include/SDL.h"
 
 #include <list>
+#include <queue>
+#include <functional>
 
 #define MAX_ENEMIES 5
 
@@ -21,10 +24,29 @@ enum ENTITY_TYPES
 	TOWN_HALL
 };
 
+struct EntitiesDraw_info{
+	SDL_Rect rect;
+	iPoint pos;
+	uint priority;
+};
+
+struct compare {
+	bool operator()(const EntitiesDraw_info& infoA, const EntitiesDraw_info& infoB)
+	{
+		if (infoA.priority > infoB.priority)
+			return infoA.priority > infoB.priority;
+		
+		else
+			return infoB.priority > infoA.priority;
+		
+	}
+};
 class j1EntityFactory : public j1Module {
 private:
 
 	std::list<Entity*> entities;
+
+	std::priority_queue<EntitiesDraw_info, std::vector<EntitiesDraw_info>, compare> drawOrder;
 
 public:
 	j1EntityFactory() {};
@@ -54,6 +76,7 @@ public:
 	iPoint pos;
 	ENTITY_TYPES type;
 	SDL_Rect rect;
+	uint priority;
 private:
 
 };
