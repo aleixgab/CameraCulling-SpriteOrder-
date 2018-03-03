@@ -12,46 +12,33 @@ bool j1EntityFactory::Start() {
 bool j1EntityFactory::PreUpdate() {
 
 	//TODO 1: fes una llista que iteri totes les entitats STD
-	//TODO 2: intercanvia les posicions del iterador amb el seguent de la llista comprobant la posició dels peus de cada un std::next
-	///Penseu quin ordre volem per despres fer el pintat
-
-	/*for (Entity* ent = entities.top(); entities.empty(); ent++) {
+	for (std::list<Entity*>::iterator iterator = entities.begin(); iterator != entities.end(); iterator++) {
 		bool repeat = true;
-		if (App->render->Is_inScreen(ent->pos.x, ent->pos.y)) {
-
-			std::priority_queue<int> q;
-		}
-	
-		
-
-
+		if (*iterator == entities.back())
+			repeat = false;
+		//TODO 2: intercanvia les posicions del iterador amb el seguent de la llista comprobant la posició dels peus de cada un std::next
+		///Penseu quin ordre volem per despres fer el pintat
 
 		while (repeat) {
 			repeat = false;
-			if (ent->pos.y + ent->rect.h > std::next(ent)->pos.y + std::next(ent)->rect.h) {
-				SWAP((ent), (ent++));
-				if (!entities.empty())
+			if ((*iterator)->pos.y + (*iterator)->rect.h > (*std::next(iterator))->pos.y + (*std::next(iterator))->rect.h) {
+				SWAP((*iterator), (*iterator++));
+				if (*iterator != entities.back())
 					repeat = true;
 			}
 
 		}
-	}*/
-
+	}
 	return true;
 }
 
 
 bool j1EntityFactory::Update(float dt)
 {
-
-	for (Entity* ent = entities.top(); !entities.empty(); ent++) {
-
-		if (App->render->Is_inScreen(ent->pos.x, ent->pos.y) || !App->render->CameraCulling_On)
-			ent->Draw(texture);
-		ent->Move(dt);
-		//entities.pop();
+	for (std::list<Entity*>::iterator iterator = entities.begin(); iterator != entities.end(); iterator++) {
+		(*iterator)->Draw(texture);
+		(*iterator)->Move(dt);
 	}
-		//TODOO
 
 	return true;
 }
@@ -59,6 +46,12 @@ bool j1EntityFactory::Update(float dt)
 bool j1EntityFactory::CleanUp()
 {
 	App->tex->UnLoad(texture);
+	for (std::list<Entity*>::iterator iterator = entities.begin(); iterator == entities.end(); iterator++)
+	{
+		delete *iterator;
+	}
+	entities.clear();
+
 	return true;
 }
 
@@ -84,9 +77,9 @@ Entity* j1EntityFactory::AddEntity(int pos_x, int pos_y, ENTITY_TYPES type)
 	
 	else if (ent->type == PLAYER) 
 		ent->rect = { 0, 0, 50, 55 };
-	
 
-	entities.push(ent);
+
+	entities.push_back(ent);
 
 	return ent;
 }

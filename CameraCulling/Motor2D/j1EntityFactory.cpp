@@ -12,8 +12,7 @@ bool j1EntityFactory::Start() {
 bool j1EntityFactory::PostUpdate()
 {
 	for (std::list<Entity*>::iterator iterator = entities.begin(); iterator != entities.end(); iterator++) {
-		if (App->render->Is_inScreen((*iterator)->pos.x, (*iterator)->pos.y) || !App->render->CameraCulling_On)
-			(*iterator)->Draw(texture);
+		(*iterator)->Draw(texture);
 	}
 
 	return true;
@@ -50,6 +49,6 @@ Entity* j1EntityFactory::AddEntity(int pos_x, int pos_y, ENTITY_TYPES type)
 
 void Entity::Draw(SDL_Texture* texture)
 {
-	App->render->Blit(texture, pos.x, pos.y, &rect);
+	App->render->Blit(texture, pos.x, pos.y, App->render->Is_inScreen(pos.x,pos.y), &rect);
 }
 

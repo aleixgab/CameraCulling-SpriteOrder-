@@ -7,8 +7,6 @@
 #include "j1Textures.h"
 
 #include <list>
-#include <queue>
-#include <functional>
 
 #define MAX_ENEMIES 5
 
@@ -26,7 +24,7 @@ enum ENTITY_TYPES
 class j1EntityFactory : public j1Module {
 private:
 
-	std::priority_queue<Entity*, std::vector<Entity*>, std::greater<Entity*>> entities;
+	std::list<Entity*> entities;
 
 public:
 	j1EntityFactory() {};
@@ -56,7 +54,6 @@ public:
 	iPoint pos;
 	ENTITY_TYPES type;
 	SDL_Rect rect;
-	uint priority;
 private:
 
 };
