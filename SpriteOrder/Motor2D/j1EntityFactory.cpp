@@ -11,36 +11,15 @@ bool j1EntityFactory::Start() {
 
 bool j1EntityFactory::PreUpdate() {
 
-	//TODO 1: fes una llista que iteri totes les entitats STD
-	//TODO 2: intercanvia les posicions del iterador amb el seguent de la llista comprobant la posició dels peus de cada un std::next
-	///Penseu quin ordre volem per despres fer el pintat
-
-	/*for (Entity* ent = entities.top(); entities.empty(); ent++) {
-		bool repeat = true;
-		if (App->render->Is_inScreen(ent->pos.x, ent->pos.y)) {
-
-			std::priority_queue<int> q;
-		}
-
-		while (repeat) {
-			repeat = false;
-			if (ent->pos.y + ent->rect.h > std::next(ent)->pos.y + std::next(ent)->rect.h) {
-				SWAP((ent), (ent++));
-				if (!entities.empty())
-					repeat = true;
-			}
-
-		}
-	}*/
-
-
-
+	//TODO 6: Iterate entities list and push entities information in the priority queue
+	//Remember the firsts TODOs from Camera Culling. Dont push in the queue if entity is not in the screen
 	for (std::list<Entity*>::iterator iterator = entities.begin(); iterator != entities.end(); iterator++) {
 		if (App->render->Is_inScreen((*iterator)->pos.x, (*iterator)->pos.y) || !App->render->CameraCulling_On) {
 			EntitiesDraw_info info;
 			info.pos = (*iterator)->pos;
 			info.rect = (*iterator)->rect;
 			info.priority = (*iterator)->pos.y + (*iterator)->rect.h;
+			info.anim = (*iterator)->CurrentAnim;
 			drawOrder.push(info);
 		}
 	}
@@ -51,16 +30,23 @@ bool j1EntityFactory::PreUpdate() {
 
 bool j1EntityFactory::Update(float dt)
 {
-	while (!drawOrder.empty()) {
-		EntitiesDraw_info info = drawOrder.top();
-		App->render->Blit(texture, info.pos.x, info.pos.y, &info.rect);
-		drawOrder.pop();
+	//TODO 7: Pop queue and blit one by one
+	//coment [(*iterator)->Draw(texture);] it's a few lines above
+	for (EntitiesDraw_info info = drawOrder.top(); !drawOrder.empty(); drawOrder.pop(), info = drawOrder.top()) {
+		if (info.anim != nullptr)
+			App->render->Blit(texture, info.pos.x, info.pos.y, &info.anim->GetCurrentFrame());
+		else
+			App->render->Blit(texture, info.pos.x, info.pos.y, &info.rect);
+
 	}
-	
+
 	for (std::list<Entity*>::iterator iterator = entities.begin(); iterator != entities.end(); iterator++) {
 		//(*iterator)->Draw(texture);
 		(*iterator)->Move(dt);
 	}
+
+
+	
 	return true;
 }
 

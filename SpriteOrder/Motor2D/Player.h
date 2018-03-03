@@ -28,6 +28,7 @@ public:
 public:
 
 	ENTITY_TYPES type;
+	//Animation* CurrentAnim = nullptr;
 
 private:
 
@@ -35,7 +36,6 @@ private:
 	Animation right;
 	Animation left;
 	Animation up;
-	Animation* CurrentAnim = nullptr;
 
 	SDL_Texture* texture = nullptr;
 	fPoint speed = { 0.0f,0.0f };

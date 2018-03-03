@@ -52,7 +52,7 @@ void j1Map::Draw()
 					SDL_Rect r = tileset->GetTileRect(tile_id);
 					iPoint pos = MapToWorld(x, y);
 
-					//TODOO
+					//TODO 2: Check if tile position is in the screen with function that we made in last TODO
 					if (App->render->Is_inScreen(pos.x, pos.y) || !App->render->CameraCulling_On)
 						App->render->Blit(tileset->texture, pos.x, pos.y, &r);
 				}

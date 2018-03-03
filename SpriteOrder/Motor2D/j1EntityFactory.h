@@ -6,10 +6,10 @@
 #include "j1Render.h"
 #include "j1Textures.h"
 #include "SDL/include/SDL.h"
+#include "Animation.h"
 
 #include <list>
 #include <queue>
-#include <functional>
 
 #define MAX_ENEMIES 5
 
@@ -24,28 +24,29 @@ enum ENTITY_TYPES
 	TOWN_HALL
 };
 
+//TODO 3: Create a struct from entities information that holds their rect, position, animation and Priority(it's a positive whole)
+
 struct EntitiesDraw_info{
 	SDL_Rect rect;
 	iPoint pos;
 	uint priority;
+	Animation* anim = nullptr;
 };
 
+//TODO 5: Create a struct that will compare entities information priorities
 struct compare {
 	bool operator()(const EntitiesDraw_info& infoA, const EntitiesDraw_info& infoB)
 	{
-		if (infoA.priority > infoB.priority)
-			return infoA.priority > infoB.priority;
-		
-		else
-			return infoB.priority > infoA.priority;
-		
+		return infoA.priority > infoB.priority;		
 	}
 };
+
 class j1EntityFactory : public j1Module {
 private:
 
 	std::list<Entity*> entities;
 
+//	TODO 4: Create a priority_queue with struct made it on last TODO
 	std::priority_queue<EntitiesDraw_info, std::vector<EntitiesDraw_info>, compare> drawOrder;
 
 public:
@@ -62,7 +63,6 @@ public:
 
 	SDL_Texture* texture;
 
-
 };
 
 class Entity {
@@ -77,6 +77,7 @@ public:
 	ENTITY_TYPES type;
 	SDL_Rect rect;
 	uint priority;
+	Animation* CurrentAnim = nullptr;
 private:
 
 };
