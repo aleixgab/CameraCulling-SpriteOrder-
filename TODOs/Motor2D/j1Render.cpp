@@ -4,7 +4,6 @@
 #include "j1Window.h"
 #include "j1Render.h"
 #include "j1Map.h"
-#include "Brofiler\Brofiler.h"
 
 #define VSYNC true
 
@@ -74,7 +73,7 @@ bool j1Render::PreUpdate()
 
 bool j1Render::PostUpdate()
 {
-	BROFILER_CATEGORY("Render", Profiler::Color::Orchid);
+
 	SDL_SetRenderDrawColor(renderer, background.r, background.g, background.g, background.a);
 	SDL_RenderPresent(renderer);
 	return true;
@@ -259,3 +258,4 @@ bool j1Render::DrawCircle(int x, int y, int radius, Uint8 r, Uint8 g, Uint8 b, U
 }
 
 //TODO 1: Create a function that say if tile or object position that we want to print is in the screen
+

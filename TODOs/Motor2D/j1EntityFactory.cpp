@@ -14,6 +14,7 @@ bool j1EntityFactory::PreUpdate() {
 	//TODO 6: Iterate entities list and push entities information in the priority queue
 	//Remember the firsts TODOs from Camera Culling. Dont push in the queue if entity is not in the screen
 
+
 	return true;
 }
 

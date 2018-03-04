@@ -14,8 +14,6 @@
 #include "j1EntityFactory.h"
 #include "j1App.h"
 
-// TODO 3: Add Brofiler categories to all Update methods
-
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 {

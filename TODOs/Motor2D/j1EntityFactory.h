@@ -29,13 +29,14 @@ enum ENTITY_TYPES
 
 //TODO 5: Create a struct that will compare entities information priorities
 
+
+
 class j1EntityFactory : public j1Module {
 private:
 
 	std::list<Entity*> entities;
 
 //	TODO 4: Create a priority_queue with struct made it on last TODO
-
 
 public:
 	j1EntityFactory() {};
