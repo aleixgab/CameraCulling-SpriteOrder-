@@ -11,7 +11,7 @@ The camera culling function is looking for what is on the screen. It's something
 
 Sprite ordering is related with camera culling, and it's used for 2D games because the entities doesn't have a third coordinate to know the depth. The objective of sprite ordering, as the name says, is to put in order the sprites in every frame depending on the position they are located. Without that we could find a situation in which a character or object that is located at the back of another is printed over the second one, like in the next picture:
 
-![SpriteOrder_image](https://github.com/aleixgab/SpriteOrdering-CameraCulling/blob/master/Photos/SpriteOrder_image.png)
+![](https://github.com/aleixgab/SpriteOrdering-CameraCulling/blob/master/docs/Photos/SpriteOrder_image.png)
 
 _What happens without sprite ordering_
 
@@ -29,7 +29,7 @@ We start doing the camera culling
 - Use camera rect to compare with the received object rect to see if it's in or not of the screen
 - Consider that camera viewport works on the inverse
 
-![CameraCullin](https://github.com/aleixgab/SpriteOrdering-CameraCulling/blob/master/Photos/CameraCulling.png)
+![](https://github.com/aleixgab/SpriteOrdering-CameraCulling/blob/master/docs/Photos/CameraCulling.png)
 
 It's important to use the corners of the screen as a reference for your coordinates
 
@@ -58,7 +58,7 @@ if you have more doubts you can check [here](http://en.cppreference.com/w/cpp/co
 
 **TODO 5**: Create a struct that compares entities information priorities
 
-![priority queue](https://github.com/aleixgab/SpriteOrdering-CameraCulling/blob/master/Photos/priority%20queue.png)
+![](https://github.com/aleixgab/SpriteOrdering-CameraCulling/blob/master/docs/Photos/priority%20queue.png)
           
 
 - We have and strucure so “std::greater” can not be used
@@ -82,7 +82,7 @@ It's very important to do it in every frame because at the time that you do a po
 
 If you did all TODOs correctly you will see something like this photo:
 
-![finished](https://github.com/aleixgab/SpriteOrdering-CameraCulling/blob/master/Photos/finished.png)
+![](https://github.com/aleixgab/SpriteOrdering-CameraCulling/blob/master/docs/Photos/finished.png)
 
 ## Quadtree
 
@@ -96,5 +96,5 @@ For example in Warcraft, when the pawns have to bring some materials, they searc
 
 The quadtree it is useful for the camera culling, because thanks to that you can focus on the node that you want to, and at the same time you would only verify the collisions which are in the same node while ignoring the other ones.
 
-![quadtree](https://github.com/aleixgab/SpriteOrdering-CameraCulling/blob/master/Photos/quadtree.png)
+![](https://github.com/aleixgab/SpriteOrdering-CameraCulling/blob/master/docs/Photos/quadtree.png)
 
