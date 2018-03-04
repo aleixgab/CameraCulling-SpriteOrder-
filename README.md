@@ -18,7 +18,7 @@ _What happens without sprite ordering_
 
 It's related with camera culling because the colocation of the sprites it's only revised with the ones that are in the screen and ignoring the other which are not printed. You will see clearly by the time you do it, and next i'm going to explain you how to do it more detailed:
 
-Before we start, in my [repository](https://github.com/aleixgab/SpriteOrdering-CameraCulling) you can find a folder with everything that i'm explaining now and another one with everything done. In the code you can find comments that explain in detail things that can be helpful while doing it and where you have to do it 
+Before we start, in my [repository](https://github.com/aleixgab/SpriteOrdering-CameraCulling) you can find a folder with everything that i'm explaining now and another one with everything done. In the code you can find comments that explain in detail things that can be helpful while doing it and where you have to do it. The libraries that i used are SDL and STD.
 
 ## TODOs
 
@@ -72,26 +72,28 @@ if you have more doubts you can check [here](http://en.cppreference.com/w/cpp/ut
 
 It's very important to do it in every frame because at the time that you do a pop, the information is lost so you need to pick the position and other information of every single frame and update it in the correct order
 
+**TODO 7**: Pop queue and blit one by one
+
+- Before this, Comment this line “(*iterator)->Draw(texture);" it’s few lines above
+- You need to be conscious that depending if there is an animation or not the blit will be different
 
 
-### Markdown
+If you did all TODOs correctly you will see something like this photo:
+(photo)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+## Quadtree
 
-# Header 1
-## Header 2
-### Header 3
+Quadtree is a tree that it's splited up in equal child nodes, is it used for 2D and i will explain it the utility in games. 
 
-- Bulleted
-- List
+With the quadtree we split the screen in four parts, every part become a child part of the original one. If we keep having many collisions, prints or entities we divide one of the child parts and we obtain four more parts that are the childs of the child that we had, and we do it repeatedly.
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
+For example in Warcraft, when the pawns have to bring some materials, they search the ones that have closer or when they chope stone, they look for the closer one that they have in a concrete radius and don't go to the first they have saved that maybe is on the other side of the map.
+
+
+The quadtree it is useful for the camera culling, because thanks to that you can focus on the node that you want to, and at the same time you would only verify the collisions which are in the same node while ignoring the other ones.
+
+(photo)
 
 [Link](url) and ![Image](src)
-```
