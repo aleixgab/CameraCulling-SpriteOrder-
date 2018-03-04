@@ -57,7 +57,9 @@ The struct hold:
 if you have more doubts you can check [here](http://en.cppreference.com/w/cpp/container/priority_queue)
 
 **TODO 5**: Create a struct that compares entities information priorities
-(photo)
+
+<img src="https://github.com/aleixgab/SpriteOrdering-CameraCulling/blob/master/Photos/priority%20queue.png">
+          
 
 - We have and strucure so “std::greater” can not be used
 - We have to create a new structure and make a bool operation inside
@@ -79,8 +81,8 @@ It's very important to do it in every frame because at the time that you do a po
 
 
 If you did all TODOs correctly you will see something like this photo:
-(photo)
 
+<img src="https://github.com/aleixgab/SpriteOrdering-CameraCulling/blob/master/Photos/finished.png">
 
 ## Quadtree
 
@@ -94,6 +96,6 @@ For example in Warcraft, when the pawns have to bring some materials, they searc
 
 The quadtree it is useful for the camera culling, because thanks to that you can focus on the node that you want to, and at the same time you would only verify the collisions which are in the same node while ignoring the other ones.
 
-(photo)
+<img src="https://github.com/aleixgab/SpriteOrdering-CameraCulling/blob/master/Photos/quadtree.png">
 
-[Link](url) and ![Image](src)
+[Link](url) and ![Image](https://github.com/aleixgab/SpriteOrdering-CameraCulling/blob/master/Photos/SpriteOrder_image.png)
