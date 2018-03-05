@@ -35,7 +35,11 @@ It's important to use the corners of the screen as a reference for your coordina
 
 **TODO 2**: Check if the map tile position is on the screen with the function that was created during last TODO
 
-If your function is well done you will see something like this:
+If your function is well done you will see something like this
+
+
+![](Photos/CameraCulling_done.png)
+
 
 Camera culling is now applied exclusively for the map and not for the entities, this ones we will do it later.
 Now let's start with sprite ordering
