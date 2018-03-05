@@ -90,7 +90,7 @@ If you did all TODOs correctly you will see something like this photo:
 
 ## Quadtree
 
-Quadtree is a tree that it's splited up in equal child nodes, is it used for 2D and i will explain it the utility in games. 
+Quadtree is a tree that it's splitted up in equal child nodes, is it used for 2D and i will explain it the utility in games. 
 
 With the quadtree we split the screen in four parts, every part become a child part of the original one. If we keep having many collisions, prints or entities we divide one of the child parts and we obtain four more parts that are the childs of the child that we had, and we do it repeatedly.
 
