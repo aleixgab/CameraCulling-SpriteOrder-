@@ -1,6 +1,6 @@
 # Sprite Ordering and Camera Culling
 
-My name is Aleix Gabarro and I’m a university videogame developer student from Catalonia in Polytechnic University specifically in [CITM](https://www.citm.upc.edu/). I will explain you my personal research about camera culling and sprite ordering. This is used for the second year in ProjectII, where the students have to create a game under supervision of lecturer [Ricard Pillosu]( https://es.linkedin.com/in/ricardpillosu).
+My name is [Aleix Gabarró](https://www.linkedin.com/in/aleix-gabarro-70699717b/) and I’m a university videogame developer student from Catalonia in Polytechnic University specifically in [CITM](https://www.citm.upc.edu/). I will explain you my personal research about camera culling and sprite ordering. This is used for the second year in ProjectII, where the students have to create a game under supervision of lecturer [Ricard Pillosu]( https://es.linkedin.com/in/ricardpillosu).
 Firstly I will start explain all **camera culling** and continue to **sprite ordering** with their own exercises for a better undersanding.
 
 ## Camera culling
